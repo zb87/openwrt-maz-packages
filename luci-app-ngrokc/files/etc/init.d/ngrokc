@@ -34,7 +34,7 @@ list_tunnels() {
     SERVER_PARAMS=`get_servarg $server`
     echo $server" : ngrokc "$SERVER_PARAMS $TUNNEL_PARAMS
     CMD_EXIST=`busybox ps|grep Profile:${1}|grep -v grep`
-    [ -z "${CMD_EXIST}" ] && \
+    [ "z""${CMD_EXIST}" = "z" ] && \
     exec /usr/bin/ngrokc $SERVER_PARAMS $TUNNEL_PARAMS 2>&1 >/dev/null &
 	echo  $! > /tmp/ngrokc/${1}.pid
     #exec $STDBUF /usr/bin/ngrokc $SERVER_PARAMS $TUNNEL_PARAMS 2>/dev/null 1>/tmp/ngrokc/${1}.log & 
